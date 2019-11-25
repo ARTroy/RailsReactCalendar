@@ -1,0 +1,34 @@
+.header_cell { 
+    padding-top:8px; padding-bottom:8px; 
+    background-color:#d6ecfa; 
+    border-bottom: rgb(243, 247, 248) solid 2px;
+
+    > div {
+        padding-top:2px;
+    }
+    color:darkslategray
+}
+
+.time_cell, .calendar_cell {
+    height:3rem;
+    background-color:aliceblue;
+    border: rgb(243, 247, 248) solid 2px;
+    color:darkslategray;
+    border-radius: 3px;
+}
+div.calendar_cell:hover {
+    border-color: rgb(186, 216, 228);
+}
+
+/*
+
+
+.time_cell, .calendar_cell {
+    height:3rem;
+    background-color:rgb(244, 250, 250);
+    border: rgb(241, 245, 245) solid 2px;
+}
+div.calendar_cell:hover {
+    border-color: rgb(139, 202, 202);
+}
+*/
