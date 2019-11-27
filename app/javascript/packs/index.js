@@ -3,10 +3,10 @@
 // of the page.
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/App';
+import Calendar from '../components/Calendar';
 
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
-        <App/>,document.getElementById('root')
+        <Calendar/>,document.getElementById('root')
     )
 })

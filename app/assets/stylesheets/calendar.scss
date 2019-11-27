@@ -1,23 +1,33 @@
+.full_wrapper {
+    color:darkslategray;
+}
 .header_cell { 
     padding-top:8px; padding-bottom:8px; 
     background-color:#d6ecfa; 
     border-bottom: rgb(243, 247, 248) solid 2px;
-
+    border: '2px solid whitesmoke'; 
+    text-align:"center"; 
+    background-color: 'aliceblue';
     > div {
         padding-top:2px;
     }
-    color:darkslategray
+    
 }
-
-.time_cell, .calendar_cell {
-    height:3rem;
+.time_cell{
+    height:50px;
+    display: block;
+} 
+/*.calendar_cell {
+    height:2rem;
     background-color:aliceblue;
     border: rgb(243, 247, 248) solid 2px;
-    color:darkslategray;
     border-radius: 3px;
-}
+}*/
 div.calendar_cell:hover {
     border-color: rgb(186, 216, 228);
+}
+.calendar_column {
+    background-color:rgb(244, 250, 250);
 }
 
 /*

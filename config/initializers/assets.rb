@@ -18,4 +18,6 @@ Rails.application.config.assets.precompile += %w( vendor/modernizr.js )
 Rails.application.config.assets.precompile += %w( foundation_and_overrides.scss )
 Rails.application.config.assets.precompile += %w( foundation-icons.css )
 Rails.application.config.assets.precompile += %w( all.css)
+Rails.application.config.assets.precompile += %w( jquery/dist/jquery.js)
+
 #C:\Git\rails_react_calendar\node_modules\@fortawesome\fontawesome-free\css\all.css
