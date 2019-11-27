@@ -1,11 +1,9 @@
 class CreateCalendarEvents < ActiveRecord::Migration[5.1]
     def change
         add_column :calendar_events do |t|
-            t.datetime :start_date
-            t.datetime :end_time
+            t.datetime :start_datetime
+            t.datetime :end_datetime
             t.integer :duration_minutes
-            t.integer :start_hour
-            t.string :week_day   
             t.timestamps
 
             t.string :title

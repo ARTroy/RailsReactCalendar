@@ -30,7 +30,7 @@ class CalendarWeek extends React.Component {
     {
         { this.calculate_weekday_events() }
         return (
-            <div id="full_wrapper">
+            <div id="full_wrapper" className="full_wrapper">
                 <div id="header_wrapper" className="grid-x small-up-8 grid-padding-x">
                     <CalendarHeader week_days={this.props.week_days} />
                 </div>

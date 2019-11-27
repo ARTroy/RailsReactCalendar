@@ -6,7 +6,11 @@ import ReactDOM from 'react-dom';
 import Calendar from '../components/Calendar';
 
 document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(
-        <Calendar/>,document.getElementById('root')
-    )
+    var calendars = document.getElementsByClassName('React_Calendar');
+
+    for (var i=0; i< calendars.length; i++) {
+        ReactDOM.render(
+            <Calendar/>,calendars[i]
+        )
+    }
 })

@@ -1,8 +1,7 @@
 import React from 'react';
 
 class CalendarDay extends React.Component {
-     // 
-     // 
+
     render ()
     {
         return (
@@ -11,7 +10,7 @@ class CalendarDay extends React.Component {
             </div>
         )
     }
-//style={"position"} 
+
     events(){
         if(this.props.day_events !== undefined){
             var events_jsx = []
@@ -32,7 +31,7 @@ class CalendarDay extends React.Component {
         }
         return events_jsx;
     }
-        //$(...).scrollTo(document.getElementById('twenty'), 800);
+    //$(...).scrollTo(document.getElementById('twenty'), 800);
 }
 //console.log(this.props.day_events)
 

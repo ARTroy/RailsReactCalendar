@@ -33,7 +33,16 @@ class Calendar extends React.Component {
                 title: "Eat",
                 completed: false,
                 duration: 60,
-                start_datetime: new Date('2019-12-27T12:00:00'),
+                start_datetime: new Date('2019-11-27T12:00:00'),
+                end_datetime: new Date('2019-12-26T13:00:00'),
+                is_recurring: false,
+            },
+            {
+                id: 4,
+                title: "Interview",
+                completed: false,
+                duration: 60,
+                start_datetime: new Date('2019-12-14T12:00:00'),
                 end_datetime: new Date('2019-12-26T13:00:00'),
                 is_recurring: false,
             }
