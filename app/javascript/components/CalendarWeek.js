@@ -16,14 +16,37 @@ class CalendarWeek extends React.Component {
         this.week_days_events = {}
 
         // Assign events for this week to a nested object
-        for (let i = 0; i < this.props.events.length; i++) { 
-            if(this.props.events[i].start_datetime.getDate() in this.week_days_events){
-                this.week_days_events[this.props.events[i].start_datetime.getDate()].push(this.props.events[i]);
+        for (let i = 0; i < this.props.events.length; i++) {
+            let event = this.props.events[i];
+            let start_date = event.start_datetime.getDate();
+            let end_date = event.end_datetime.getDate();
+
+            // check if this needs to be added to other days
+            if(start_date != end_date){  
+                // We round down as this solves 2+ day differences,
+                // but breaks day differences less than 24 hours, so we catch that with next
+                var dif = Math.round((event.end_datetime - event.start_datetime)/86400000); 
+                if(dif == 0){ dif = 1; }
+
+                // Add day-spanning events to multiple days
+                for(let j = 0; j <= dif; j++){
+                    let next_start_day = new Date(event.start_datetime);
+                    next_start_day.setDate(start_date+j);
+                    
+                    if(next_start_day in this.week_days_events){
+                        this.week_days_events[next_start_day.getDate()].push(event);
+                    } else {
+                        this.week_days_events[next_start_day.getDate()] = [event];
+                    }
+                } 
             } else {
-                this.week_days_events[this.props.events[i].start_datetime.getDate()] = [this.props.events[i]];
-            }  
+                if(start_date in this.week_days_events){ 
+                    this.week_days_events[start_date].push(event);
+                } else {
+                    this.week_days_events[start_date] = [event];
+                }
+            }
         }
-        return;
     }
 
     render ()

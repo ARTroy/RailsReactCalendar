@@ -17,9 +17,6 @@ function CalendarTimeColumn() {
             <div className="time_cell" id="time_cell_08">08:00</div>
             <div className="time_cell" id="time_cell_09">09:00</div>
             <div className="time_cell" id="time_cell_10">10:00</div>
-            <div className="time_cell" id="time_cell_10">10:00</div>
-            <div className="time_cell" id="time_cell_10">10:00</div>
-            <div className="time_cell" id="time_cell_10">10:00</div>
             <div className="time_cell" id="time_cell_11">11:00</div>
             <div className="time_cell" id="time_cell_12">12:00</div>
             <div className="time_cell" id="time_cell_13">13:00</div>
@@ -29,6 +26,7 @@ function CalendarTimeColumn() {
             <div className="time_cell" id="time_cell_17">17:00</div>
             <div className="time_cell" id="time_cell_18">18:00</div>
             <div className="time_cell" id="time_cell_19">19:00</div>
+            <div className="time_cell" id="time_cell_19">20:00</div>
             <div className="time_cell" id="time_cell_21">21:00</div>
             <div className="time_cell" id="time_cell_22">22:00</div>
             <div className="time_cell" id="time_cell_23">23:00</div>

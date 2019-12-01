@@ -1,10 +1,12 @@
+
 .full_wrapper {
     color:darkslategray;
-    min-width: 850px;
-    overflow: scroll;
+    min-width: 800px;
 }
+
 .header_cell { 
-    padding-top:8px; padding-bottom:8px; 
+    padding-top:8px; 
+    padding-bottom:8px; 
     background-color:#d6ecfa; 
     border-bottom: rgb(243, 247, 248) solid 2px;
     border: '2px solid whitesmoke'; 
@@ -12,24 +14,30 @@
     background-color: 'aliceblue';
     > div {
         padding-top:2px;
-    }
-    
+    } 
 }
+
 .time_cell{
-    height:50px;
+    height: 42px; // this be equal to 60*pixels_per_minute from CalendarDay.js
     display: block;
 } 
-/*.calendar_cell {
-    height:2rem;
-    background-color:aliceblue;
-    border: rgb(243, 247, 248) solid 2px;
-    border-radius: 3px;
-}*/
+
 div.calendar_cell:hover {
     border-color: rgb(186, 216, 228);
 }
+
 .calendar_column {
     background-color:rgb(244, 250, 250);
+    height:1008px; // this should match up with 60*pixels_per_minute*24 from CalendarDay.js
+    position: relative;
+}
+
+.day_event {
+    width: 82%;
+    position: absolute;
+    background: #da8196;
+    padding-left: 4px;
+    border-radius: 4px;
 }
 
 /*
