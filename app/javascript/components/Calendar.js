@@ -13,6 +13,7 @@ class Calendar extends React.Component {
             {
                 id: 1,
                 title: "Sleep",
+                description:"Taking a nap",
                 completed: false,
                 duration: 60,
                 start_datetime: new Date('2019-11-26T23:00:00'),
@@ -22,6 +23,7 @@ class Calendar extends React.Component {
             {
                 id: 2,
                 title: "Eat",
+                description:"A fine dining experience",
                 completed: false,
                 duration: 60,
                 start_datetime: new Date('2019-11-26T12:00:00'),
@@ -31,6 +33,7 @@ class Calendar extends React.Component {
             {
                 id: 3,
                 title: "Eat",
+                description:"A fine dining experience",
                 completed: false,
                 duration: 60,
                 start_datetime: new Date('2019-11-26T12:00:00'),
@@ -41,6 +44,7 @@ class Calendar extends React.Component {
             {
                 id: 4,
                 title: "Interview",
+                description:"A future endeavour",
                 completed: false,
                 duration: 60,
                 start_datetime: new Date('2019-11-26T15:00:00'),
@@ -50,6 +54,7 @@ class Calendar extends React.Component {
             {
                 id: 6,
                 title: "Big event",
+                description: "Known to take a while",
                 completed: false,
                 duration: 60,
                 start_datetime: new Date('2019-11-28T15:00:00'),

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+//<i className="fas fa-angle-left"></i></span>
+//style={{marginLeft:"initial", paddingRight:"0.9375rem", width:"initial", borderRight:"solid black 3px;"}}>
+//function CalendarHeader() {
 //<Link to='/menu'><i className="fi-widget"></i></Link>
 
 class CalendarHeader extends React.Component {
@@ -11,7 +13,7 @@ class CalendarHeader extends React.Component {
                     <div className="grid-x"> 
                     <div className="cell small-4"><i className="fas fa-angle-left"></i></div>
                     <div className="cell small-4"><i className="fas fa-angle-right"></i></div>
-                    <div className="cell small-4"></div>
+                    <div className="cell small-4"><a herf=""></a></div>
                     </div>
                 </div>
             </div>    
