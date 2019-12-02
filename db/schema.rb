@@ -13,8 +13,19 @@
 ActiveRecord::Schema.define(version: 20191121152403) do
 
   create_table "calendar_events", force: :cascade do |t|
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.integer "duration_minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "description"
+    t.decimal "latitude", precision: 12, scale: 8
+    t.decimal "longitude", precision: 12, scale: 8
+    t.boolean "is_recurring"
+    t.integer "recurring_type"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_calendar_events_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

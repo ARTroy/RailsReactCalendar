@@ -1,6 +1,6 @@
 class CreateCalendarEvents < ActiveRecord::Migration[5.1]
     def change
-        add_column :calendar_events do |t|
+        create_table :calendar_events do |t|
             t.datetime :start_datetime
             t.datetime :end_datetime
             t.integer :duration_minutes
