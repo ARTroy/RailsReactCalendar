@@ -3,8 +3,11 @@ class CalendarController < ApplicationController
     before_action :authorize
 
     def index
-        @start_of_week = Date.current.beginning_of_week.to_time.to_formatted_s(:iso8601) 
-        @end_of_week = Date.current.end_of_week.to_time.end_of_day
+        @start_of_week = Date.current.beginning_of_week.to_time
+        @end_of_week = Date.current.end_of_week.to_time.end_of_day.to_time
+
+        @start_of_next_week = Date.current.beginning_of_week.advance(:weeks => 1).to_time
+        @start_of_previous_week = Date.current.beginning_of_week.advance(:weeks => -1).to_time
 
         @week_events = CalendarEvent
         .where("
@@ -20,19 +23,24 @@ class CalendarController < ApplicationController
     def week_by_day_month_year 
         day = params.has_key?(:day)
         month = params.has_key?(:month)
-        year = params.has_key?(:year)
-   
-        abort(params[:year]+ " " + params[:month] + " " + params[:day]);
+        year = params.has_key?(:year)  
 
-        if( year.match(/^{[12][0-9]{3}$/) && month.match(/^[01]?[0-9]\d+$/) && day.match(/^[0-3]?[0-9]\d+$/))
-            given_date = Time.parse(year,month,day);
+        if( day && month && year && (
+            params[:year].match(/^[12][0-9]{3}$/) && params[:month].match(/^[01]?[0-9]\d+$/) && params[:day].match(/^[0-3]?[0-9]\d+$/)
+        ))
+            @start_of_week = Date.new( params[:year].to_i, params[:month].to_i, params[:day].to_i );
+            
         else 
-            given_date = beginning_of_week(Time.current)
+            @start_of_week =  Date.current.beginning_of_week.to_time
         end
+
+        @end_of_week = @start_of_week.end_of_week.to_time.end_of_day.to_time
+
+        @start_of_next_week = @start_of_week.beginning_of_week.advance(:weeks => 1).to_time
+        @start_of_previous_week = @start_of_week.beginning_of_week.advance(:weeks => -1).to_time
         
-        @start_of_week = beginning_of_week(given_date)
-        @end_of_week = end_of_week(given_date)
-        
+        @start_of_week = @start_of_week.to_time
+
         @week_events = CalendarEvent.where("
             (start_datetime >= :start_datetime AND start_datetime <= :end_of_week) OR
             (end_datetime >= :start_datetime AND end_datetime <= :end_of_week)",{
@@ -40,7 +48,9 @@ class CalendarController < ApplicationController
                 end_of_week: @end_of_week
         })
         .where("user_id = ?", session[:user_id] )
-        .to_json.html_safe       
+        .to_json.html_safe  
+        
+        return render "index"
     end
 
     def new()
