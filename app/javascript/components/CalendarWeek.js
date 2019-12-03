@@ -33,7 +33,7 @@ class CalendarWeek extends React.Component {
                     let next_start_day = new Date(event.start_datetime);
                     next_start_day.setDate(start_date+j);
                     
-                    if(next_start_day in this.week_days_events){
+                    if(next_start_day.getDate() in this.week_days_events){
                         this.week_days_events[next_start_day.getDate()].push(event);
                     } else {
                         this.week_days_events[next_start_day.getDate()] = [event];
