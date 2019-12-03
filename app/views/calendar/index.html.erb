@@ -1,2 +1,25 @@
 <%= javascript_pack_tag 'index' %>
+
+<script>
+    start_of_week = "<%= @start_of_week.to_formatted_s(:iso8601)  %>";  
+    week_events = <%= @week_events %>;
+</script>   
+<div class="grid-x calendar_top_bar">
+    <div class="cell small-1">
+        <a href="/calendar/<%= @start_of_previous_week.strftime("%d/%m/%Y") %>"> 
+            <i class="fas fa-angle-left" style="float:right; font-size:40px; padding:10px"></i>
+        </a>        
+    </div>
+    <div class="cell small-1"></div>
+    <div class="cell small-3">
+        <a href="/event/new"><i class="far fa-calendar-plus" style="font-size:32px; padding-top:13px; padding-bottom:14px"></i></a>
+    </div>
+    <div class="cell small-4"><!-- Add "go to" control here --></div>
+    <div class="cell small-1"></div>
+    <div class="cell small-1">
+        <a href="/calendar/<%= @start_of_next_week.strftime("%d/%m/%Y") %>"> 
+            <i class="fas fa-angle-right" style="float:left; font-size:40px; padding:10px"></i>
+        </a>
+    </div>
+</div>
 <div class="React_Calendar"></div>

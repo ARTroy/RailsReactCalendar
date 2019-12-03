@@ -1,0 +1,53 @@
+<div class="grid-container">
+  <div class="grid-x grid-padding-x">
+        <div class="cell small-12" style="padding:40px;">
+            <div class="callout" style="padding-bottom:0px" >
+                <h3>Add new event to Calendar</h3>
+
+                <% if notice %>
+                    <%= notice %>
+                <% end %>	
+                <% if alert %>
+                    <%= alert %>
+                <% end %>
+
+                <%= form_for @calendar_event, url: '/event', method: :post do |f| %>
+                    <% if @calendar_event.errors.any? %>
+                        <% @calendar_event.errors.full_messages.each do |msg| %>
+                            <p><%= msg %></p>
+                        <% end %>
+                    <% end %>
+
+                    <%= f.label :title %>
+                    <%= f.text_field :title %>
+
+                    <%= f.label :description %>
+                    <%= f.text_field :description %>
+
+                    <div class="grid-x grid-padding-x">
+                        <div class="cell small-12">
+                            <%= f.label :start_datetime %>
+                        </div>
+                        <div class="cell small-6">
+                            <input name="calendar_event[start_date]" type="date" style="display:inline-block"/>
+                        </div>
+                        <div class="cell small-6">
+                            <input name="calendar_event[start_time]" type="time" style="display:inline-block"/>
+                        </div>
+                        <div class="cell small-12">
+                            <%= f.label :end_datetime %>
+                        </div> 
+                        <div class="cell small-6">
+                            <input name="calendar_event[end_date]" type="date" style="display:inline-block"/>
+                        </div>
+                        <div class="cell small-6">
+                            <input name="calendar_event[end_time]" type="time" style="display:inline-block"/>
+                        </div>
+                    </div>
+
+                    <%= f.submit class:"button" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
