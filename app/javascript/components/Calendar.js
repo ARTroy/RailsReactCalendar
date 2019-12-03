@@ -6,68 +6,24 @@ import CalendarWeek from './CalendarWeek';
 import { strict } from 'assert';
 
 class Calendar extends React.Component {
-    state = {
-        events:[
-            {
-                id: 1,
-                title: "Sleep",
-                description:"Taking a nap",
-                completed: false,
-                duration: 60,
-                start_datetime: new Date('2019-11-26T23:00:00'),
-                end_datetime: new Date('2019-11-27T07:30:00'),
-                is_recurring: false,
-            },
-            {
-                id: 2,
-                title: "Eat",
-                description:"A fine dining experience",
-                completed: false,
-                duration: 60,
-                start_datetime: new Date('2019-11-26T12:00:00'),
-                end_datetime: new Date('2019-11-26T13:00:00'),
-                is_recurring: false,
-            },
-            {
-                id: 3,
-                title: "Eat",
-                description:"A fine dining experience",
-                completed: false,
-                duration: 60,
-                start_datetime: new Date('2019-11-26T12:00:00'),
-                end_datetime: new Date('2019-11-26T13:00:00'),
-                is_recurring: false,
-                generated_event: false
-            },
-            {
-                id: 4,
-                title: "Interview",
-                description:"A future endeavour",
-                completed: false,
-                duration: 60,
-                start_datetime: new Date('2019-11-26T15:00:00'),
-                end_datetime: new Date('2019-11-26T16:00:00'),
-                is_recurring: false,
-            },
-            {
-                id: 6,
-                title: "Big event",
-                description: "Known to take a while",
-                completed: false,
-                duration: 60,
-                start_datetime: new Date('2019-11-28T15:00:00'),
-                end_datetime: new Date('2019-11-30T13:00:00'),
-                is_recurring: false,
-            }
-        ],
-    } 
+
+    constructor(props) {
+        super(props);
+        this.state ={events: week_events};
+        this.current_week_start = start_of_week;
+
+        for (let i = 0; i < this.state.events.length; i++) {
+            this.state.events[i].start_datetime = new Date(this.state.events[i].start_datetime);
+            this.state.events[i].end_datetime = new Date(this.state.events[i].end_datetime);
+        }
+    }
 
     render ()
     {
         return (
             <CalendarWeek 
-                current_week_start={ new Date("2019-11-25T00:00:00") } 
-                week_days={this.get_week_days(new Date("2019-11-25T00:00:00"))} 
+                current_week_start={ new Date(this.current_week_start) } 
+                week_days={this.get_week_days(this.current_week_start)} 
                 events={this.state.events}
             />                        
         );
@@ -75,6 +31,7 @@ class Calendar extends React.Component {
 
     get_week_days (current_week_start) {
         var week_days = [];
+        
         var day = new Date(current_week_start).getDate()
         var date;
 

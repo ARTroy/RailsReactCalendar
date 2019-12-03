@@ -3,9 +3,9 @@ class CalendarController < ApplicationController
     before_action :authorize
 
     def index
-        @start_of_week = Date.current.beginning_of_week.to_time
+        @start_of_week = Date.current.beginning_of_week.to_time.to_formatted_s(:iso8601) 
         @end_of_week = Date.current.end_of_week.to_time.end_of_day
-        
+
         @week_events = CalendarEvent
         .where("
             (start_datetime >= :start_datetime AND start_datetime <= :end_of_week) OR
@@ -15,7 +15,6 @@ class CalendarController < ApplicationController
         })
         .where("user_id = ?", session[:user_id] )
         .to_json.html_safe
-
     end
 
     def week_by_day_month_year 
@@ -41,8 +40,7 @@ class CalendarController < ApplicationController
                 end_of_week: @end_of_week
         })
         .where("user_id = ?", session[:user_id] )
-        .to_json.html_safe
-        
+        .to_json.html_safe       
     end
 
     def new()
@@ -62,7 +60,7 @@ class CalendarController < ApplicationController
 
         @calendar_event = CalendarEvent.new(new_params)
         
-        if( true ) #@calendar_event.save() ) 
+        if( @calendar_event.save() ) 
             return redirect_to action:'index'
         else 
             return redirect_to action:'new'
@@ -81,7 +79,8 @@ class CalendarController < ApplicationController
     def destroy
         @calendar_event = CalendarEvent.find(params[:id])
         @calendar_event.destroy()
-        return render 'index' 
+
+        return redirect_to action: 'index' 
     end 
 
     private def calendar_params

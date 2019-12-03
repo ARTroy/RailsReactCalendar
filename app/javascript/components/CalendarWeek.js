@@ -9,8 +9,7 @@ import { strict } from 'assert';
 class CalendarWeek extends React.Component {
 
     constructor(props) {
-        super(props)
-        console.log("in2");
+        super(props);
     }   
 
     calculate_weekday_events (){

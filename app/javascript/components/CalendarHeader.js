@@ -9,7 +9,7 @@ class CalendarHeader extends React.Component {
     render (){
         return <React.Fragment>
             <div className="cell header_cell">       
-            {this.date_month(this.props.week_days[0])} {this.props.week_days[0].getFullYear()}
+                <div >{this.date_month(this.props.week_days[0])} {this.props.week_days[0].getFullYear()}</div>
             </div>    
             <div className="cell header_cell"><div>Mon {this.props.week_days[0].getDate()}{this.nth(this.props.week_days[0].getDate())}</div></div>
             <div className="cell header_cell"><div>Tue {this.props.week_days[1].getDate()}{this.nth(this.props.week_days[1].getDate())}</div></div>

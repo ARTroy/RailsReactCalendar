@@ -43,7 +43,7 @@ class CalendarDay extends React.Component {
                     }
                     // if event end is not today, set it to max - start time
                     if(this.props.day.getDate() < day_event.end_datetime.getDate()){
-                        var duration = 960 - event_start;
+                        var duration = 936 - event_start; // 936 = 24 * 60 * pixels_per_minute, as 24 hours is max
                     } else {
                         var duration = day_event.end_datetime.getHours()*(60*pixels_per_minute)+ day_event.end_datetime.getMinutes()- event_start;
                     }                
@@ -81,6 +81,6 @@ class CalendarDay extends React.Component {
     }
 
 }
-const pixels_per_minute = 0.7;
+const pixels_per_minute = 0.65;
 
 export default CalendarDay;

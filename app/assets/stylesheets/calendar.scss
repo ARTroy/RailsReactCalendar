@@ -5,8 +5,8 @@
 }
 
 .header_cell { 
-    padding-top:8px; 
-    padding-bottom:8px; 
+    padding-top:10px; 
+    padding-bottom:10px; 
     background-color:#d6ecfa; 
     border-bottom: rgb(243, 247, 248) solid 2px;
     border: '2px solid whitesmoke'; 
@@ -14,11 +14,12 @@
     background-color: 'aliceblue';
     > div {
         padding-top:2px;
+        font-size: 17px;
     } 
 }
 
 .time_cell{
-    height: 42px; // this be equal to 60*pixels_per_minute from CalendarDay.js
+    height: 39px; // this be equal to 60*pixels_per_minute from CalendarDay.js
     display: block;
 } 
 
@@ -28,7 +29,7 @@ div.calendar_cell:hover {
 
 .calendar_column {
     background-color:rgb(244, 250, 250);
-    height:1008px; // this should match up with 60*pixels_per_minute*24 from CalendarDay.js
+    height:936px; // this should match up with 60*pixels_per_minute*24 from CalendarDay.js
     position: relative;
 }
 
@@ -72,9 +73,8 @@ div.calendar_cell:hover {
         text-decoration: none;
     }
 }
+
 /*
-
-
 .time_cell, .calendar_cell {
     height:3rem;
     background-color:rgb(244, 250, 250);
