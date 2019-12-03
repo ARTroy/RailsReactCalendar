@@ -10,6 +10,7 @@ class CalendarWeek extends React.Component {
 
     constructor(props) {
         super(props)
+        console.log("in2");
     }   
 
     calculate_weekday_events (){

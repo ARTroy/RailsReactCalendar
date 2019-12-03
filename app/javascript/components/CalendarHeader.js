@@ -9,13 +9,7 @@ class CalendarHeader extends React.Component {
     render (){
         return <React.Fragment>
             <div className="cell header_cell">       
-                <div className="grid-container">
-                    <div className="grid-x"> 
-                    <div className="cell small-4"><i className="fas fa-angle-left"></i></div>
-                    <div className="cell small-4"><i className="fas fa-angle-right"></i></div>
-                    <div className="cell small-4"><a herf=""></a></div>
-                    </div>
-                </div>
+            {this.date_month(this.props.week_days[0])} {this.props.week_days[0].getFullYear()}
             </div>    
             <div className="cell header_cell"><div>Mon {this.props.week_days[0].getDate()}{this.nth(this.props.week_days[0].getDate())}</div></div>
             <div className="cell header_cell"><div>Tue {this.props.week_days[1].getDate()}{this.nth(this.props.week_days[1].getDate())}</div></div>
@@ -36,10 +30,20 @@ class CalendarHeader extends React.Component {
             default: return "th";
         }
     }
+    
+    date_month(month){
+        var three_letter = [
+            "January", "February", "March",
+            "April", "May", "June",
+            "July", "August", "September",
+            "October", "November", "December"
+        ];
+        return three_letter[month.getMonth()];
+    }
 }
 
 const headerStyle = {
     color: '#003366',
 }
-//<Link to='/'>Home</Link> | <Link to='/about'>About</Link>
+
 export default CalendarHeader;

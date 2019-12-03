@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     get '/calendar' => 'calendar#index'
     get '/calendar/:day/:month/:year' => 'calendar#week_by_day_month_year'
 
+    get '/event/new' => 'calendar#new'
+    post '/event' => 'calendar#create'
+
     # User stuff
     get 'signup' => 'users#new', as: :new_user
     post 'users' => 'users#create'

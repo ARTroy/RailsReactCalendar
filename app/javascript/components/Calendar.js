@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import CalendarWeek from './CalendarWeek';
 import { strict } from 'assert';
@@ -67,17 +65,11 @@ class Calendar extends React.Component {
     render ()
     {
         return (
-            <Router>
-                <Route exact path="/" render={props => (
-                    <CalendarWeek 
-                        current_week_start={ new Date("2019-11-25T00:00:00") } 
-                        week_days={this.get_week_days(new Date("2019-11-25T00:00:00"))} 
-                        events={this.state.events}/>                        
-                )} />
-                <Route path="/menu" render={props => (
-                    <div><Link to='/'>Back</Link></div>
-                )} />
-            </Router>       
+            <CalendarWeek 
+                current_week_start={ new Date("2019-11-25T00:00:00") } 
+                week_days={this.get_week_days(new Date("2019-11-25T00:00:00"))} 
+                events={this.state.events}
+            />                        
         );
     }
 

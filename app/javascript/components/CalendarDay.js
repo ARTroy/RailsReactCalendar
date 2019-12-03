@@ -17,10 +17,10 @@ class CalendarDay extends React.Component {
         return (
             <React.Fragment> 
             <div className="cell calendar_column" id={"day_"+this.props.day.getDate()}>
-                {this.events()}
-                
+                {this.events()}      
             </div>
-            <div ref={this.foundation_modal} id="myModal" className="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <div ref={this.foundation_modal} id="myModal" className="reveal-modal" 
+            data-reveal aria-hidden="true" role="dialog" data-animation-in="fade-in fast" data-animation-out="fade-out fast">
                 { this.state.modal_content }
                 <a className="close-reveal-modal" aria-label="Close" onClick={ this.close_foundation_modal }>&#215;</a>
             </div>
