@@ -19,7 +19,7 @@ class CalendarDay extends React.Component {
             <div className="cell calendar_column" id={"day_"+this.props.day.getDate()}>
                 {this.events()}      
             </div>
-            <div ref={this.foundation_modal} id="myModal" className="reveal-modal" 
+            <div ref={this.foundation_modal} id={"modal_day_"+this.props.day.id} className="reveal-modal" 
             data-reveal aria-hidden="true" role="dialog" data-animation-in="fade-in fast" data-animation-out="fade-out fast">
                 { this.state.modal_content }
                 <a className="close-reveal-modal" aria-label="Close" onClick={ this.close_foundation_modal }>&#215;</a>
@@ -62,10 +62,38 @@ class CalendarDay extends React.Component {
     show_foundation_modal(day_event) {
         this.setState({ modal_content: 
             <div>
-                <h2 id="modalTitle"> {day_event.title}</h2>
-                <p><div style={{width:"50px", display:"inline-block"}}>Starts:</div> { day_event.start_datetime.getFullYear() + "-" + (day_event.start_datetime.getMonth() + 1) + "-" + day_event.start_datetime.getDate() + " " + day_event.start_datetime.getHours() + ":" + day_event.start_datetime.getMinutes()}</p>
-                <p><div style={{width:"50px", display:"inline-block"}}>Ends:</div> { day_event.end_datetime.getFullYear() + "-" + (day_event.end_datetime.getMonth() + 1) + "-" + day_event.end_datetime.getDate() + " " + day_event.end_datetime.getHours() + ":" + day_event.end_datetime.getMinutes()}</p>
-                <p>{day_event.description}</p>
+                <h2 id="modalTitle">{ day_event.title }</h2>
+                <div className="grid-x grid-padding-x">
+                        <div className="cell small-12">
+                            <label>title</label> <input name="calendar_event[title]" type="text" value={ day_event.title }/>
+                        </div>
+                        <div className="cell small-12">
+                            <label>description</label> <input name="calendar_event[description]" type="text" value={ day_event.description } /> 
+                        </div>
+                        <div className="cell small-12">
+                            <label>start datetime</label>
+                        </div>
+                        <div className="cell small-6">
+                            <input name="calendar_event[start_date]" type="date" style={{display: 'inline-block'}}
+                            value={ day_event.start_datetime.getFullYear() + "-" + (day_event.start_datetime.getMonth() + 1).toString().padStart(2, '0') + "-" + day_event.start_datetime.getDate().toString().padStart(2, '0') }/>
+                        </div>
+                        <div className="cell small-6">
+                            <input name="calendar_event[start_time]" type="time" style={{display: 'inline-block'}}
+                            value={ day_event.start_datetime.getHours().toString().padStart(2, '0') + ":" + day_event.start_datetime.getMinutes().toString().padStart(2, '0') }/>
+                        </div>
+                        <div className="cell small-12">
+                            <label>end datetime</label>
+                        </div> 
+                        <div className="cell small-6">
+                            <input name="calendar_event[end_date]" type="date" style={{display: 'inline-block'}} 
+                            value={ day_event.end_datetime.getFullYear() + "-" + (day_event.end_datetime.getMonth() + 1).toString().padStart(2, '0') + "-" + day_event.end_datetime.getDate().toString().padStart(2, '0') }/>
+                        </div>
+                        <div className="cell small-6">
+                            <input name="calendar_event[end_time]" type="time" style={{display: 'inline-block'}}
+                            value={ day_event.end_datetime.getHours().toString().padStart(2, '0') + ":" + day_event.end_datetime.getMinutes().toString().padStart(2, '0') }/>
+                        </div>
+                </div>
+
             </div>
             
         });
@@ -79,6 +107,8 @@ class CalendarDay extends React.Component {
         $(reveal).foundation('close');
         event.preventDefault();
     }
+
+    //edit_on_change = (e) => this.setState({ [e.target.name]:e.target.value }); onChange={edit_on_change} 
 
 }
 const pixels_per_minute = 0.65;
