@@ -78,11 +78,12 @@ class CalendarController < ApplicationController
     end
 
     def update 
-        @calendar_event = CalendarEvent.find(params[:id])
-        if( @calendar_event.update(params) ) 
-            return redirect action:'index'
+        @calendar_event = CalendarEvent.find(params[:id])      
+
+        if( @calendar_event.update(calendar_params) ) 
+            render :json => {:update => @calendar_event}.to_json, :status => 200
         else 
-            return redirect action:'new'
+            render :json => {:error => "not-found"}.to_json, :status => 404
         end
     end
 

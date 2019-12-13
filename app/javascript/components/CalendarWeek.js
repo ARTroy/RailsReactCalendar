@@ -38,7 +38,7 @@ class CalendarWeek extends React.Component {
                     } else {
                         this.week_days_events[next_start_day.getDate()] = [event];
                     }
-                } 
+                }
             } else {
                 if(start_date in this.week_days_events){ 
                     this.week_days_events[start_date].push(event);
@@ -59,13 +59,27 @@ class CalendarWeek extends React.Component {
                 </div>
                 <div id="calendar_wrapper" className="grid-x small-up-8 grid-padding-x calendar_wrapper">
                     <CalendarTimeColumn />
-                    <CalendarDay day={this.props.week_days[0]} day_events={this.week_days_events[this.props.week_days[0].getDate()]}/>
-                    <CalendarDay day={this.props.week_days[1]} day_events={this.week_days_events[this.props.week_days[1].getDate()]}/>
-                    <CalendarDay day={this.props.week_days[2]} day_events={this.week_days_events[this.props.week_days[2].getDate()]}/>
-                    <CalendarDay day={this.props.week_days[3]} day_events={this.week_days_events[this.props.week_days[3].getDate()]}/>
-                    <CalendarDay day={this.props.week_days[4]} day_events={this.week_days_events[this.props.week_days[4].getDate()]}/>
-                    <CalendarDay day={this.props.week_days[5]} day_events={this.week_days_events[this.props.week_days[5].getDate()]}/>
-                    <CalendarDay day={this.props.week_days[6]} day_events={this.week_days_events[this.props.week_days[6].getDate()]}/>
+                    <CalendarDay day={this.props.week_days[0]} 
+                                day_events={this.week_days_events[this.props.week_days[0].getDate()]} 
+                                update_event={this.props.update_event} />
+                    <CalendarDay day={this.props.week_days[1]} 
+                                day_events={this.week_days_events[this.props.week_days[1].getDate()]} 
+                                update_event={this.props.update_event} />
+                    <CalendarDay day={this.props.week_days[2]} 
+                                day_events={this.week_days_events[this.props.week_days[2].getDate()]} 
+                                update_event={this.props.update_event} />
+                    <CalendarDay day={this.props.week_days[3]} 
+                                day_events={this.week_days_events[this.props.week_days[3].getDate()]} 
+                                update_event={this.props.update_event} />
+                    <CalendarDay day={this.props.week_days[4]} 
+                                day_events={this.week_days_events[this.props.week_days[4].getDate()]} 
+                                update_event={this.props.update_event} />
+                    <CalendarDay day={this.props.week_days[5]} 
+                                day_events={this.week_days_events[this.props.week_days[5].getDate()]} 
+                                update_event={this.props.update_event} />
+                    <CalendarDay day={this.props.week_days[6]} 
+                                day_events={this.week_days_events[this.props.week_days[6].getDate()]} 
+                                update_event={this.props.update_event} />
                 </div>     
             </div>                        
         );
