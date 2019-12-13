@@ -3,13 +3,14 @@ Rails.application.routes.draw do
 
     # Main react single page app
     root to: 'calendar#index'
-    
 
     get '/calendar' => 'calendar#index'
+    put '/calendar' => 'calendar#update'
     get '/calendar/:day/:month/:year' => 'calendar#week_by_day_month_year'
 
     get '/event/new' => 'calendar#new'
     post '/event' => 'calendar#create'
+    put '/event/:id' => 'calendar#update'
 
     # User stuff
     get 'signup' => 'users#new', as: :new_user
@@ -22,7 +23,4 @@ Rails.application.routes.draw do
 	# delete action to log out:
     delete '/logout' => 'sessions#destroy' 
     
-    # get 'menu'  => 'calendar#index'
-    #get '/calendar/:day' => 'calendar#week_by_day'
-    #get '/calendar/:day/:month' => 'calendar#week_by_day_month'
 end

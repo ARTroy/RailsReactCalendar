@@ -1,30 +1,35 @@
 import React from 'react';
+import EventEditForm from './EventEditForm';
 
 class CalendarDay extends React.Component {
-    state = {
-        modal_content: ""
-    }
-
     constructor(props) {
-        super(props);
+        super(props);    
         this.foundation_modal = React.createRef();
+        this.foundation_modal_form = React.createRef();
         this.show_foundation_modal = this.show_foundation_modal.bind(this);
         this.close_foundation_modal = this.close_foundation_modal.bind(this);
+
     }
 
     render ()
     {
+        if(this.props.day_events !== undefined){
+            var modal = (
+            <div ref={this.foundation_modal} id={"modal_day_"+this.props.day.id} className="reveal-modal" 
+            data-reveal aria-hidden="true" role="dialog" data-animation-in="fade-in fast" data-animation-out="fade-out fast">
+                <EventEditForm ref={this.foundation_modal_form} day_event={this.props.day_events[0]} 
+                    update_event={this.props.update_event} 
+                    close_self={this.close_foundation_modal} />
+                <a className="close-reveal-modal" aria-label="Close" onClick={ this.close_foundation_modal }>&#215;</a>
+            </div>);
+        } else { modal = ""}
         return (
-            <React.Fragment> 
+            <React.Fragment>
             <div className="cell calendar_column" id={"day_"+this.props.day.getDate()}>
                 {this.events()}      
             </div>
-            <div ref={this.foundation_modal} id="myModal" className="reveal-modal" 
-            data-reveal aria-hidden="true" role="dialog" data-animation-in="fade-in fast" data-animation-out="fade-out fast">
-                { this.state.modal_content }
-                <a className="close-reveal-modal" aria-label="Close" onClick={ this.close_foundation_modal }>&#215;</a>
-            </div>
-            </React.Fragment>   
+            {modal}
+            </React.Fragment>
         )
     }
 
@@ -33,7 +38,7 @@ class CalendarDay extends React.Component {
             var events_jsx = []
 
             for (let i = 0; i < this.props.day_events.length; i++) { 
-                var day_event = this.props.day_events[i]; 
+                let day_event = this.props.day_events[i]; 
                 if(day_event){
                     // if event start is not today, set time to 0, which is midnight
                     if(this.props.day.getDate() > day_event.start_datetime.getDate()){
@@ -46,41 +51,34 @@ class CalendarDay extends React.Component {
                         var duration = 936 - event_start; // 936 = 24 * 60 * pixels_per_minute, as 24 hours is max
                     } else {
                         var duration = day_event.end_datetime.getHours()*(60*pixels_per_minute)+ day_event.end_datetime.getMinutes()- event_start;
-                    }                
+                    }           
 
                     events_jsx.push(
-                        <div className="day_event" style={{top:event_start, height:duration}} data-id={"day_event_"+day_event.id} >
-                            <span onClick={() => this.show_foundation_modal(day_event) }> {day_event.title}</span>
+                        <div className="day_event" style={{top:event_start, height:duration}}
+                                onClick={() => this.show_foundation_modal(day_event)}
+                                data-id={"day_event_"+day_event.id}>
+                            <div style={{display:"block",height:"8px"}}></div>    
+                            <span>{day_event.title}</span>
+                            <div style={{display:"block",height:"8px",bottom:"0px",position:"absolute",width:"96%"}}></div>
                         </div>
                     );
                 }
-            }   
+            }
         }
         return events_jsx;
     }
 
     show_foundation_modal(day_event) {
-        this.setState({ modal_content: 
-            <div>
-                <h2 id="modalTitle"> {day_event.title}</h2>
-                <p><div style={{width:"50px", display:"inline-block"}}>Starts:</div> { day_event.start_datetime.getFullYear() + "-" + (day_event.start_datetime.getMonth() + 1) + "-" + day_event.start_datetime.getDate() + " " + day_event.start_datetime.getHours() + ":" + day_event.start_datetime.getMinutes()}</p>
-                <p><div style={{width:"50px", display:"inline-block"}}>Ends:</div> { day_event.end_datetime.getFullYear() + "-" + (day_event.end_datetime.getMonth() + 1) + "-" + day_event.end_datetime.getDate() + " " + day_event.end_datetime.getHours() + ":" + day_event.end_datetime.getMinutes()}</p>
-                <p>{day_event.description}</p>
-            </div>
-            
-        });
-        var reveal = this.foundation_modal.current;
-        $(reveal).foundation('open');
-        event.preventDefault();
+        this.foundation_modal_form.current.rebuild(day_event);
+        $(this.foundation_modal.current).foundation('open');
     }
 
     close_foundation_modal() {      
-        var reveal = this.foundation_modal.current;
-        $(reveal).foundation('close');
+        $(this.foundation_modal.current).foundation('close');
         event.preventDefault();
     }
-
 }
+
 const pixels_per_minute = 0.65;
 
 export default CalendarDay;
