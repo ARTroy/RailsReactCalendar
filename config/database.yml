@@ -8,13 +8,12 @@ development:
   database: db/development.sqlite3
 
 production:
+  <<: *default
   adapter: postgresql
   encoding: unicode
-  # url: <%= ENV["DATABASE_URL"] %>
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['APPNAME_DATABASE_USERNAME'] %> 
   password: <%= ENV['APPNAME_DATABASE_PASSWORD'] %> 
   database: rails_react_calendar
+  url: <%= ENV["DATABASE_URL"] %>
 
