@@ -15,9 +15,10 @@
                     <% if @calendar_event.errors.any? %>
                         <% @calendar_event.errors.full_messages.each do |msg| %>
                             <p><%= msg %></p>
+                            
                         <% end %>
                     <% end %>
-
+                    
                     <%= f.label :title %>
                     <%= f.text_field :title %>
 

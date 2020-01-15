@@ -57,23 +57,30 @@ class CalendarController < ApplicationController
         @calendar_event = CalendarEvent.new
     end
 
-    def create 
-        # Create object using new   
+    def create
+        # Code that generates single date will fail if you don't check first for existence of dates
+        if(calendar_params[:start_date].blank? || calendar_params[:start_time].blank? || 
+           calendar_params[:end_date].blank? || calendar_params[:end_time].blank? )
+
+            @calendar_event = CalendarEvent.new({ title: calendar_params[:title], description: calendar_params[:description]  })
+            return render action:'new'
+        end
+   
         start_datetime = calendar_params[:start_date]+"T"+calendar_params[:start_time]+":00+00:00"
         end_datetime = calendar_params[:end_date]+"T"+calendar_params[:end_time]+":00+00:00"
         duration_minutes = ((Time.parse(end_datetime) - Time.parse(start_datetime) ).to_i / 60).to_s
 
+        # Create new params with dates and times combined into date times
         new_params = { 
             start_datetime: start_datetime, end_datetime: end_datetime, duration_minutes: duration_minutes,
             title: calendar_params[:title], description: calendar_params[:description], user_id: session[:user_id]
         }
-
         @calendar_event = CalendarEvent.new(new_params)
-        
+
         if( @calendar_event.save() ) 
             return redirect_to action:'index'
         else 
-            return redirect_to action:'new'
+            return render action:'new'
         end
     end
 

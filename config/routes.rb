@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     root to: 'calendar#index'
 
     get '/calendar' => 'calendar#index'
-    put '/calendar' => 'calendar#update'
     get '/calendar/:day/:month/:year' => 'calendar#week_by_day_month_year'
 
     get '/event/new' => 'calendar#new'

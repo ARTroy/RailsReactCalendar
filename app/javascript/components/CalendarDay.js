@@ -8,7 +8,6 @@ class CalendarDay extends React.Component {
         this.foundation_modal_form = React.createRef();
         this.show_foundation_modal = this.show_foundation_modal.bind(this);
         this.close_foundation_modal = this.close_foundation_modal.bind(this);
-
     }
 
     render ()
@@ -16,7 +15,9 @@ class CalendarDay extends React.Component {
         if(this.props.day_events !== undefined){
             var modal = (
             <div ref={this.foundation_modal} id={"modal_day_"+this.props.day.id} className="reveal-modal" 
-            data-reveal aria-hidden="true" role="dialog" data-animation-in="fade-in fast" data-animation-out="fade-out fast">
+            data-reveal aria-hidden="true" role="dialog" data-animation-in="fade-in fast" data-animation-out="fade-out fast"
+            style={{display:"none"}}
+            >
                 <EventEditForm ref={this.foundation_modal_form} day_event={this.props.day_events[0]} 
                     update_event={this.props.update_event} 
                     close_self={this.close_foundation_modal} />
