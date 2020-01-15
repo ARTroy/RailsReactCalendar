@@ -19,5 +19,5 @@ Rails.application.config.assets.precompile += %w( foundation.min.css)
 Rails.application.config.assets.precompile += %w( foundation-icons.css )
 Rails.application.config.assets.precompile += %w( all.css)
 Rails.application.config.assets.precompile += %w( jquery/dist/jquery.js)
-
+Rails.application.config.assets.precompile += %w( init.js )
 #C:\Git\rails_react_calendar\node_modules\@fortawesome\fontawesome-free\css\all.css
