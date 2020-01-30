@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import CalendarWeek from './CalendarWeek';
 import { strict } from 'assert';
 
+// Primary component which is invoked to output the calendar, make top level changes here
 class Calendar extends React.Component {
     state = {}
 
@@ -25,31 +26,33 @@ class Calendar extends React.Component {
         return (
             <CalendarWeek 
                 current_week_start={ new Date(this.current_week_start) } 
-                week_days={this.get_week_days(this.current_week_start)} 
-                events={this.state.events}
-                update_event={this.update_event}
+                week_days={ this.get_week_days(this.current_week_start) } 
+                events={ this.state.events }
+                update_event={ this.update_event }
             />                        
         );
     }
 
     update_event (new_event) {
-        this.setState({ events: this.state.events.map(
-            current_event => {
-                if(current_event.id === new_event.id ){
-                    current_event.title = new_event.title; 
-                    current_event.description = new_event.description;
-                    current_event.start_datetime = new_event.start_datetime;
-                    current_event.end_datetime = new_event.end_datetime;
+        this.setState({ 
+            events: this.state.events.map(
+                current_event => {
+                    if(current_event.id === new_event.id ) {
+                        current_event.title = new_event.title; 
+                        current_event.description = new_event.description;
+                        current_event.start_datetime = new_event.start_datetime;
+                        current_event.end_datetime = new_event.end_datetime;
+                    }
+                    return current_event;
                 }
-                return current_event;
-            }
-        ) });
+            )
+        });
         
         this.event_update_ajax(new_event);
     }
 
-    async event_update_ajax(event){
-        var token = $( 'meta[name="csrf-token"]' ).attr( 'content' );
+    async event_update_ajax(event) {
+        let token = $( 'meta[name="csrf-token"]' ).attr( 'content' );
         let id = event.id;
         let new_event = {
             calendar_event: {
@@ -60,23 +63,25 @@ class Calendar extends React.Component {
             }
         }
 
-        var response = await fetch("/event/"+id,{
-            method: 'PUT',
-            body: JSON.stringify(new_event),
-            credentials: "same-origin",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': token
+        let response = await fetch(
+            "/event/"+id, {
+                method: 'PUT',
+                body: JSON.stringify(new_event),
+                credentials: "same-origin",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': token
+                }
             }
-        });
+        );
         return await response.json()
     }
 
     get_week_days (current_week_start) {
-        var week_days = [];
+        let week_days = [];
         
-        var day = new Date(current_week_start).getDate()
-        var date;
+        let day = new Date(current_week_start).getDate()
+        let date;
 
         for (let i = day; i < day+7; i++) { 
             date = new Date(current_week_start);
@@ -84,6 +89,7 @@ class Calendar extends React.Component {
             // Function returns a timestamp where we want the object
             week_days.push(date);
         }
+
         return week_days;
     }
 }
