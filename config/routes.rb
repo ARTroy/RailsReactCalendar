@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 	get '/login'     => 'sessions#new'
 	post '/login'    => 'sessions#create'
 	
-	# delete action to log out:
+    # delete action to log out:
+    get '/logout' => 'sessions#destroy' 
     delete '/logout' => 'sessions#destroy' 
     
 end

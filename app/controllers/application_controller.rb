@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 
     def authorize
         if(current_user.nil?) 
-            redirect_to login_path alert: 'You must be logged in to access this page.'
+            flash.now.alert = 'You must be logged in to access this page.'
+            redirect_to login_path
         end
     end
 end
