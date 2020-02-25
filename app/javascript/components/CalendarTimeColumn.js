@@ -31,7 +31,7 @@ function CalendarTimeColumn() {
             <div className="time_cell" id="time_cell_22">22:00</div>
             <div className="time_cell" id="time_cell_23">23:00</div>
         </div>
-    )
+    );
 }
 
 export default CalendarTimeColumn;
